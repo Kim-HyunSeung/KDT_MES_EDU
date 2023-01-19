@@ -368,6 +368,7 @@
 			this.btnLOTIn.Size = new System.Drawing.Size(217, 39);
 			this.btnLOTIn.TabIndex = 16;
 			this.btnLOTIn.Text = "(4) LOT투입";
+			this.btnLOTIn.Click += new System.EventHandler(this.btnLOTIn_Click);
 			// 
 			// btnRunStop
 			// 
@@ -376,6 +377,7 @@
 			this.btnRunStop.Size = new System.Drawing.Size(202, 130);
 			this.btnRunStop.TabIndex = 16;
 			this.btnRunStop.Text = "(5)가동";
+			this.btnRunStop.Click += new System.EventHandler(this.btnRunStop_Click);
 			// 
 			// sLabel4
 			// 
@@ -444,6 +446,7 @@
 			this.btnProdReg.Size = new System.Drawing.Size(252, 39);
 			this.btnProdReg.TabIndex = 17;
 			this.btnProdReg.Text = "(6) 생산실적 등록";
+			this.btnProdReg.Click += new System.EventHandler(this.btnProdReg_Click);
 			// 
 			// btnOrderClose
 			// 
