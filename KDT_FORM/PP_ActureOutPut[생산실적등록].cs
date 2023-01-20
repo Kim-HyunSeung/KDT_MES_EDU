@@ -519,5 +519,60 @@ namespace KDT_Form
 
 		}
 		#endregion
+
+		#region < 7. 작업지시 종료 >
+
+		private void btnOrderClose_Click(object sender, EventArgs e)
+		{
+
+
+			if (grid1.ActiveRow == null)return;
+			if (grid1.Rows.Count == 0) return;
+
+			string sMatLotNo = Convert.ToString(grid1.ActiveRow.Cells["MATLOTNO"].Value);
+			string sRunStop  = Convert.ToString(grid1.ActiveRow.Cells["WORKSTATUSCODE"].Value);
+
+			if (sMatLotNo != "")
+			{
+				ShowDialog("투입 LOT 가 존재 합니다. LOT 투입 취소 후 진행 하세요.");
+				return;
+			}
+
+			if (sRunStop == "R")
+			{
+				ShowDialog("작업장이 가동 상태 입니다. 비가동 등록 후 진행하세요.");
+				return;
+			}
+
+			DBHelper helper = new DBHelper(true);
+			try
+			{
+				string sPlantCode      = Convert.ToString(grid1.ActiveRow.Cells["PLANTCODE"].Value);
+				string sWorkcenterCode = Convert.ToString(grid1.ActiveRow.Cells["WORKCENTERCODE"].Value);
+				string sOrderNo        = Convert.ToString(grid1.ActiveRow.Cells["ORDERNO"].Value);
+
+				helper.ExecuteNoneQuery("02PP_ActureOutPut_I6", CommandType.StoredProcedure,
+										helper.CreateParameter("@PLANTCODE",      sPlantCode),
+										helper.CreateParameter("@WORKCENTERCODE", sWorkcenterCode),
+										helper.CreateParameter("@ORDERNO",        sOrderNo)
+					);
+
+				if (helper.RSCODE != "S") throw new Exception(helper.RSMSG);
+				helper.Commit();
+				ShowDialog("정상적으로 종료 되었습니다");
+				DoInquire();
+			}
+			catch(Exception ex)
+			{
+				helper.Rollback();
+				ShowDialog(ex.ToString());
+			}
+			finally
+			{
+				helper.Close();
+			}
+
+		}
+		#endregion
 	}
 }
