@@ -161,7 +161,7 @@ namespace KDT_Form
                             break;
                         case DataRowState.Modified:
                             #region 수정
-                            helper.ExecuteNoneQuery("02WM_ProdInStock_U1"
+                            helper.ExecuteNoneQuery("WM_ProdInStock_U1"
                                                     , CommandType.StoredProcedure
                                                     , helper.CreateParameter("PLANTCODE",  drRow["PLANTCODE"] )   //  공장
                                                     , helper.CreateParameter("LOTNO",      drRow["LOTNO"]    )   //  LOTNO

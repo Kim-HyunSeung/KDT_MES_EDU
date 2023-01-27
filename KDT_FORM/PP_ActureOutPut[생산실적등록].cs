@@ -504,7 +504,37 @@ namespace KDT_Form
 				if (helper.RSCODE != "S") throw new Exception(helper.RSMSG);
 				helper.Commit();
 				ShowDialog("정상적으로 등록 되었습니다.");
+				// 제품 식별표에 출력할 제품 LOT별 데이터 조회
+				DataTable dtTemp = helper.FillTable("02PP_ActureOutput_S2", CommandType.StoredProcedure
+									  , helper.CreateParameter("@PLANTCODE      ", sPlantCode)
+									  , helper.CreateParameter("@LOTNO          ", helper.RSMSG)
+									  );
+
+				// 바코드 디자이너에 던져줄 원자재 품목 데이터 변수 설정. 
+
+
+
+				// 바코드 디자이너에 출력할 식별표 데이터 매핑
+
+				// 바코드 디자이너 객체 생성.
+				Report_LotBacodeFERT FERT_BARCODE = new Report_LotBacodeFERT();
+
+				// 레포트 북 객체 생성.
+				Telerik.Reporting.ReportBook reportBook = new Telerik.Reporting.ReportBook();
+
+				// 바코드 디자인 객체 에 데이터 매핑 
+				FERT_BARCODE.DataSource = dtTemp;
+
+				// 디자인을 레포트 북에 등록.
+				reportBook.Reports.Add(FERT_BARCODE);
+
+				// 바코드 디자이너 뷰어(미리보기) 에 레포트 북 등록 및 표현. 
+				ReportViewer Viewer = new ReportViewer(reportBook, 1);
+				Viewer.ShowDialog();
+
+
 				DoInquire();
+
 			}
 			catch (Exception ex)
 			{

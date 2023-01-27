@@ -165,8 +165,15 @@ namespace KDT_Form
                 string sItemCode = string.Empty;
                 string sPlantCode = string.Empty;
                 double dStockQty = 0;
+                string sShipNo = string.Empty;
+
+                ///////////////////////////
+                //double sShipSEQ = 0;
+                //if (sShipSEQ != 1) return;
+                /////////////////////////////
 				foreach (DataRow dr in dtChang.Rows)
                 {
+                                      
                     switch (dr.RowState)
                     {
                         case DataRowState.Modified:
@@ -184,9 +191,11 @@ namespace KDT_Form
 													helper.CreateParameter("@WORKER",    sWorker),
 													helper.CreateParameter("@ITEMCODE",  sItemCode),
 													helper.CreateParameter("@SHIPQTY",   dStockQty),
-													helper.CreateParameter("@MAKER",     LoginInfo.UserID)
-													);
+													helper.CreateParameter("@MAKER",     LoginInfo.UserID),
 
+													helper.CreateParameter("@SHIPNO", sShipNo)
+													);
+                            sShipNo = helper.RSMSG;
 							break;
                     }
 
@@ -195,6 +204,7 @@ namespace KDT_Form
 
 				helper.Commit();
 				ShowDialog("상차 실적 등록을 완료 하였습니다.");
+                DoInquire();
 			}
             catch (Exception ex)
             {
