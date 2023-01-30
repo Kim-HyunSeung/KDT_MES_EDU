@@ -77,6 +77,12 @@
     <Compile Include="PP_StockWIPRec[재공 재고 입출 이력].designer.cs">
       <DependentUpon>PP_StockWIPRec[재공 재고 입출 이력].cs</DependentUpon>
     </Compile>
+    <Compile Include="WM_TradingManager[제품 출고 이력 및 거래명세서 발행].cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WM_TradingManager[제품 출고 이력 및 거래명세서 발행].designer.cs">
+      <DependentUpon>WM_TradingManager[제품 출고 이력 및 거래명세서 발행].cs</DependentUpon>
+    </Compile>
     <Compile Include="WM_StockOutWm[제품 출고 등록].cs">
       <SubType>Form</SubType>
     </Compile>
@@ -261,6 +267,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PP_StockWIPRec[재공 재고 입출 이력].resx">
       <DependentUpon>PP_StockWIPRec[재공 재고 입출 이력].cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WM_TradingManager[제품 출고 이력 및 거래명세서 발행].resx">
+      <DependentUpon>WM_TradingManager[제품 출고 이력 및 거래명세서 발행].cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WM_StockOutWm[제품 출고 등록].resx">
       <DependentUpon>WM_StockOutWm[제품 출고 등록].cs</DependentUpon>
